@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <!-- <h3>Salary Prediction</h3> -->
+  <div class="alert" *ngIf="predictFlag == true">
+    <span class="closebtn" (click)="close()">&times;</span>
+    <strong>{{predictMessege}}</strong>
+  </div>
+
+  <!-- error alert -->
+  <div class="err-alert" *ngIf="predictErrFlag == true">
+    <span class="closeErrbtn" (click)="closeErr()">&times;</span>
+    <strong>{{predictErrMessege}}</strong>
+  </div>
+
+  <div>
+    <form [formGroup]="form">
+      <label for="rating"><b>Rating</b></label>
+      <input type="text" id="fname" formControlName="rating" placeholder="between 1 to 5">
+
+      <label for="founded"><b>founded</b></label>
+      <select id="founded" formControlName="founded" name="year">
+        <option disabled='true'></option>
+        <option *ngFor="let year of yearList">{{year}}</option>
+      </select>
+
+      <label for="competitors"><b>Competitors</b></label>
+      <input type="text" id="competitors" formControlName="competitors" placeholder="between 1 to 5">
+
+      <label for="sector"><b>sector</b></label>
+      <select id="sector" formControlName="sector">
+        <option disabled='true'></option>
+        <option *ngFor="let sec of sectorList">{{sec}}</option>
+      </select>
+      <label for="ownership"><b>ownership</b></label>
+      <select id="ownership" formControlName="ownership">
+        <option disabled='true'></option>
+        <option *ngFor="let owner of ownershipList">{{owner}}</option>
+      </select>
+
+      <label for="job_title"><b>Job Title</b></label>
+      <select id="job_title" name="job_title" formControlName="job_title">
+        <option disabled='true'></option>
+        <option *ngFor="let title of jobTitleList">{{title}}</option>
+      </select>
+      <label for="job_seniority"><b>job Seniority</b></label>
+      <select id="job_seniority" formControlName="job_seniority">
+        <option disabled='true'></option>
+        <option *ngFor="let jobSeniority of jobSeniorityList">{{jobSeniority}}</option>
+      </select>
+      <div>
+        <label for="job_in_headquarters" style="padding: 0px;"><b>job in Headquarters</b></label>
+        <input type="checkbox" formControlName="job_in_headquarters" style="padding: 10px 10px 10px 10px;"
+          id="job_in_headquarters" name="job_in_headquarters" placeholder="between 1 to 5">
+        <span style="padding: inherit; margin: 50px">
+          <label for="job_skills" style="padding: inherit;"><b>job skills</b></label>
+          <label for="job_skills" style="padding: inherit;">sql</label>
+          <input type="checkbox" formControlName="job_skills_sql" id="sql" style="padding: inherit;">
+          <label for="job_skills" style="padding: inherit;">tableau</label>
+          <input type="checkbox" formControlName="job_skills_tableau" id="tableau" style="padding: inherit;">
+          <label for="job_skills" style="padding: inherit;">python</label>
+          <input type="checkbox" id="python" formControlName="job_skills_python" style="padding: inherit;">
+          <label for="job_skills" style="padding: inherit;">excel</label>
+          <input type="checkbox" id="excel" formControlName="job_skills_excel" style="padding: inherit;">
+        </span>
+      </div>
+      <input type="submit" (click)="save()" value="Submit">
+    </form>
+  </div>
+
+</body>
